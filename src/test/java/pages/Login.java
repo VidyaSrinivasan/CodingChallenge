@@ -4,6 +4,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Login extends BasePage{
@@ -29,9 +31,9 @@ public class Login extends BasePage{
 	
 	public void brokerLogin()
 	{
-		username.sendKeys(broker_username);
-		password.sendKeys(broker_password);
-		loginbtn.click();
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(username)).sendKeys(broker_username);
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(password)).sendKeys(broker_password);
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(loginbtn)).click();
 	}
 	
 }

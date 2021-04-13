@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class EmployeeManagement extends BasePage {
@@ -16,21 +18,23 @@ public class EmployeeManagement extends BasePage {
 		super(driver);
 	}
 	
-	public String returnEEname() throws InterruptedException
+	public String returnEEname() 
 	{
-		Thread.sleep(2000);
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EEname));
 		return EEname.getText();
 	}
 	
-	public void navigateToEmployeeTabs(String tabName) throws InterruptedException
+	public void navigateToEmployeeTabs(String tabName) 
 	{
-		driver.findElement(By.xpath("//a[text()='"+tabName+"']")).click();
-		Thread.sleep(2000);
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[text()='"+tabName+"']")))).click();
+		//driver.findElement(By.xpath("//a[text()='"+tabName+"']")).click();
+		
 	}
 
 	public void navigateToProfileLeftNav(String linkName) throws InterruptedException
 	{
-		driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]")).click();
-		Thread.sleep(2000);
+		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]")))).click();
+		//driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]")).click();
+		
 	}
 }

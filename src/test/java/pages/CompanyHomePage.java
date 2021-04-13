@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CompanyHomePage extends BasePage{
 
@@ -21,15 +23,14 @@ private WebElement EETypeaheadSelection;
 
 public void navigateToEmployeeManagement(String lastName) throws InterruptedException
 {
-	Thread.sleep(2000);
-	EESearchTextbox.sendKeys(lastName);
-	Thread.sleep(2000);
-	EETypeaheadSelection.click();
+	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EESearchTextbox)).sendKeys(lastName);
+	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EETypeaheadSelection)).click();
+	
 }
 
 public String returnCompanyTitle() throws InterruptedException
 {
-	Thread.sleep(2000);
+	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(companyTitle));
 	return companyTitle.getAttribute("title");
 }
 

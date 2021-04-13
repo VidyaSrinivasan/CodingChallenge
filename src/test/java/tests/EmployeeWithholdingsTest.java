@@ -24,10 +24,9 @@ public class EmployeeWithholdingsTest extends BaseTest{
 	
 	@Test()
 	
-	public void verifyEmployeeWithholdingData() throws InterruptedException
+	public void verifyEmployeeWithholdingData() throws InterruptedException 
 	{
 		//Login as broker user
-		Thread.sleep(2000);
 		l = new Login(driver());
 		l.brokerLogin(); 
 		
