@@ -12,26 +12,26 @@ public CompanyHomePage(WebDriver driver) {
 		super(driver);
 	}
 
-@FindBy(xpath="//a[@class='site-header-logo-link']")
+@FindBy(xpath="//a[@class='site-header-logo-link']") //company title
 private WebElement companyTitle;
 
-@FindBy(xpath="//input[@class='typeahead typeahead-container form-control tt-input']")
+@FindBy(xpath="//input[@class='typeahead typeahead-container form-control tt-input']") //EE search box
 private WebElement EESearchTextbox;
 
-@FindBy(xpath="//div[@class='tt-dataset tt-dataset-employees']/div")
+@FindBy(xpath="//div[@class='tt-dataset tt-dataset-employees']") //Type ahead search results
 private WebElement EETypeaheadSelection;
 
+//Search for an EE and navigate to EE management page
 public void navigateToEmployeeManagement(String lastName) throws InterruptedException
 {
-	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EESearchTextbox)).sendKeys(lastName);
-	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EETypeaheadSelection)).click();
+	BasePage.waitUntilElementIsVisible(driver, EESearchTextbox, 2).sendKeys(lastName);
+	BasePage.waitUntilElementIsVisible(driver, EETypeaheadSelection, 2).click();
 	
 }
 
-public String returnCompanyTitle() throws InterruptedException
+public String returnCompanyTitle() 
 {
-	new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(companyTitle));
-	return companyTitle.getAttribute("title");
+	return BasePage.waitUntilElementIsVisible(driver, companyTitle, 2).getAttribute("title");
 }
 
 }

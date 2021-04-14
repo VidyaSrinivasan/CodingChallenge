@@ -11,30 +11,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class EmployeeManagement extends BasePage {
 	
 	
-	@FindBy(xpath="//h2[@class='nomargin inline text-success']")
+	@FindBy(xpath="//h2[@class='nomargin inline text-success']") //EE name label
 	private WebElement EEname;
+	
+
 	
 	public EmployeeManagement(WebDriver driver) {
 		super(driver);
 	}
 	
+	//Getting name of EE on Employee management page
 	public String returnEEname() 
 	{
-		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(EEname));
-		return EEname.getText();
+		return BasePage.waitUntilElementIsVisible(driver, EEname, 2).getText();
 	}
 	
+	//Common method to navigate to any of the tabs on EE management page
 	public void navigateToEmployeeTabs(String tabName) 
 	{
-		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[text()='"+tabName+"']")))).click();
-		//driver.findElement(By.xpath("//a[text()='"+tabName+"']")).click();
+		WebElement EETab = driver.findElement(By.xpath("//a[text()='"+tabName+"']"));
+		BasePage.waitUntilElementIsVisible(driver, EETab, 2).click();	
 		
 	}
 
+	//Common method to navigate to any of the left nav links on the Profile page
 	public void navigateToProfileLeftNav(String linkName) throws InterruptedException
 	{
-		new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]")))).click();
-		//driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]")).click();
+		WebElement EELeftNavLink = driver.findElement(By.xpath("//span[contains(text(),'"+linkName+"')]"));
+		BasePage.waitUntilElementIsVisible(driver, EELeftNavLink, 2).click();
+		
+		
 		
 	}
 }

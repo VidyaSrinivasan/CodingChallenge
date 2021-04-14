@@ -30,7 +30,7 @@ public class EmployeeWithholdingsTest extends BaseTest{
 		l = new Login(driver());
 		l.brokerLogin(); 
 		
-		//Pick a company from the broker home page
+		//Pick a company from the Company dropdown on broker home page
 		bp = new BrokerPage(driver());
 		bp.selectCompany(companyName);
 		
@@ -42,7 +42,6 @@ public class EmployeeWithholdingsTest extends BaseTest{
 		Assert.assertEquals(companyTitle, companyName, "Company name matches");
 		
 		//Navigate to EE management page
-		
 		chp.navigateToEmployeeManagement(EELastName);
 		
 		//Verify selected EE's EE management page is displayed
@@ -56,7 +55,7 @@ public class EmployeeWithholdingsTest extends BaseTest{
 		//Navigate to EE's withholding page
 		em.navigateToProfileLeftNav("Withholdings");
 		
-		//Validate EE's withholdings information
+		//Print values in EE's withholdings information section
 		ew = new EmployeeWithholdings(driver());
 
 		ew.federalWithholdings("Filing Status");
