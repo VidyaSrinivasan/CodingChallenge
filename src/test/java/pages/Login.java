@@ -15,8 +15,8 @@ public class Login extends BasePage{
 		
 	}
 
-	private static String broker_username="automationuser";
-	private static String broker_password="Automation1!";
+	private static String broker_username="";
+	private static String broker_password="";
 
 	@FindBy(xpath="//input[@id='Username']")
 	private WebElement username;
